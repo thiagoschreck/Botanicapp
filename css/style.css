@@ -1,0 +1,28 @@
+body {
+    text-align: center !important;
+    user-select: none;
+}
+
+.plantsrow {
+}
+
+.plantsrow:hover {
+    background-color: rgb(240, 238, 238);
+    cursor: pointer;
+}
+
+.plantsrow:click {
+    background-color:rgb(204, 201, 201)
+}
+
+.separated {
+    margin-bottom: 30px;
+}
+
+#plantstable > tbody > tr > td {
+    vertical-align: middle;
+}
+
+#plantstable > tbody > tr > td > img {
+    max-width: 250px;
+}
