@@ -1,5 +1,7 @@
 body {
-    text-align: center !important;
+    padding-top: 25px;
+    /* padding: 25px 155px; */
+    text-align: center;
     user-select: none;
 }
 
@@ -12,17 +14,24 @@ body {
 }
 
 .plantsrow:click {
-    background-color:rgb(204, 201, 201)
+    background-color: rgb(204, 201, 201)
 }
 
-.separated {
+#addplantmodal>input {
+    margin: 55px !important;
+    padding: 0 !important;
+}
+
+#plantstable {
+    border-color: #dee2e6 !important;
+    border: 1px solid;
     margin-bottom: 30px;
 }
 
-#plantstable > tbody > tr > td {
+#plantstable>tbody>tr>td {
     vertical-align: middle;
 }
 
-#plantstable > tbody > tr > td > img {
+#plantstable>tbody>tr>td>img {
     max-width: 250px;
 }
