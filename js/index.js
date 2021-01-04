@@ -1,6 +1,6 @@
 let plantsObj = [];
 
-if(localStorage.getItem("plants")){
+if (localStorage.getItem("plants")) {
     plantsObj = JSON.parse(localStorage.getItem("plants"));
 }
 
@@ -15,22 +15,22 @@ function testInitialize() {
         }
     });
     plantsObj.push({
-            "plantid": 1,
-            "plantdetails": {
-                "picture": "",
-                "name": "plantOne",
-                "place": "Corridor",
-                "waterTime": "02:00",
-            }
+        "plantid": 1,
+        "plantdetails": {
+            "picture": "",
+            "name": "plantOne",
+            "place": "Corridor",
+            "waterTime": "02:00",
+        }
     });
     plantsObj.push({
-            "plantid": 2,
-            "plantdetails": {
-                "picture": "",
-                "name": "plantTwo",
-                "place": "Guests Room",
-                "waterTime": "09:25",
-            }
+        "plantid": 2,
+        "plantdetails": {
+            "picture": "",
+            "name": "plantTwo",
+            "place": "Guests Room",
+            "waterTime": "09:25",
+        }
     });
     localStorage.setItem("plants", JSON.stringify(plantsObj));
 }
@@ -75,9 +75,8 @@ function addPlant() {
 }
 
 function loadPlantsTable() {
-    // testInitialize();
     let plants = "";
-    if(plantsObj[0]){
+    if (plantsObj[0]) {
         plants = getData();
         for (let i = 0; i < plants.length; i++) {
             let htmlContentToAppend = `
@@ -93,14 +92,44 @@ function loadPlantsTable() {
             document.getElementById("plantstable").innerHTML += htmlContentToAppend;
         };
         return console.log("Finished loading all " + plants.length + " plants!");
-    }
-    else{
+    } else {
         return console.log("There are no plants to be loaded.");
     }
 }
 
+function lastWateredTime() {
+
+    const currentDate = new Date();
+    let currentDateData = {
+        "year": currentDate.getFullYear(),
+        "month": currentDate.getMonth(),
+        "day": currentDate.getDate(),
+        "hours": currentDate.getHours(),
+        "minutes": currentDate.getMinutes(),
+    }
+    let plants = "";
+    if (plantsObj[0]) {
+        plants = getData();
+        for (let i = 1; i < document.getElementById("plantstable").rows.length; i++) {
+            let lastWatered = {
+                "yyyy": plants[(i - 1)].plantdetails.waterTime,
+                "MM": plants[(i - 1)].plantdetails.waterTime,
+                "dd": plants[(i - 1)].plantdetails.waterTime,
+                "hh": plants[(i - 1)].plantdetails.waterTime,
+                "mm": plants[(i - 1)].plantdetails.waterTime,
+            };
+            for (let j = 0; j < document.getElementById("plantstable").rows[i].cells.length; j++) {
+                document.getElementById("plantstable").rows[i]
+                    .cells[(document.getElementById("plantstable").rows[i].cells.length - 1)]
+                    .innerHTML = '';
+            }
+        }
+    }
+}
+
 document.addEventListener("DOMContentLoaded", function (e) {
-    loadPlantsTable();
+    // loadPlantsTable();
+    lastWateredTime();
     document.getElementById("modalSaveButton").addEventListener("click", function () {
         addPlant();
     });
